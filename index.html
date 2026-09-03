@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gugucord_V3</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #1e1e1e;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        padding: 15px;
+        box-sizing: border-box;
+      }
+      #login-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        gap: 15px;
+      }
+      #app-screen {
+        display: none;
+        flex-direction: column;
+        height: 100vh;
+      }
+      #controls {
+        display: flex;
+        gap: 12px;
+        background-color: #2d2d2d;
+        padding: 12px;
+        border-radius: 8px;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
+      select, button, input {
+        padding: 8px 12px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: none;
+        font-weight: bold;
+      }
+      input { background-color: #333; color: white; border: 1px solid #555; }
+      button { background-color: #5865F2; color: white; cursor: pointer; }
+      button#stopBtn { background-color: #ed4245; display: none; }
+      button#changeBtn { background-color: #faa61a; display: none; }
+      
+      .content-layout {
+        display: flex;
+        flex: 1;
+        gap: 15px;
+        overflow: hidden;
+      }
+      .video-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #111;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+      }
+      #mainVideo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: black;
+      }
+      #thumbs-bar {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+      .thumb-box {
+        width: 140px;
+        height: 90px;
+        background: black;
+        border: 2px solid #5865F2;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+        display: none;
+        position: relative;
+      }
+      .thumb-box video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .thumb-box span {
+        position: absolute;
+        bottom: 2px;
+        left: 4px;
+        font-size: 10px;
+        background: rgba(0,0,0,0.7);
+        padding: 2px 4px;
+        border-radius: 3px;
+      }
+      #sidebar {
+        width: 250px;
+        background-color: #2f3136;
+        padding: 15px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+      }
+      #viewers-list {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0 0;
+        overflow-y: auto;
+        flex: 1;
+      }
+      #viewers-list li {
+        padding: 6px 8px;
+        background-color: #36393f;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="login-screen">
+      <h2>Bota um nome corno manso</h2>
+      <input type="text" id="usernameInput" placeholder="Ex: João Gamer" style="width: 250px;" />
+      <button id="joinBtn">Entrar na Sala</button>
+    </div>
+
+    <div id="app-screen">
+      <div id="controls">
+        <button id="audioToggleBtn" style="background-color: #4f545c;">🔊 Áudio: Ligado</button>
+        <label>Qualidade:
+          <select id="presetSelect">
+            <option value="320p30">320p - 30 fps</option>
+            <option value="320p60">320p - 60 fps</option>
+            <option value="720p30" selected>720p (Ideal Jogos) - 30 fps</option>
+            <option value="720p60">720p - 60 fps</option>
+            <option value="1080p30">1080p - 30 fps</option>
+            <option value="1080p60">1080p - 60 fps</option>
+          </select>
+        </label>
+        <button id="startBtn">📺 Começa a Compartilhar</button>
+        <button id="changeBtn">🔄 Trocar Tela</button>
+        <button id="stopBtn">⏹️ Parar</button>
+        <span id="status" style="color: #43b581; margin-left: auto;">Pronto</span>
+      </div>
+
+      <div class="content-layout">
+        <div class="video-container">
+          <!-- ATENÇÃO: mainVideo NÃO deve ter o atributo muted para o áudio do colega sair -->
+          <video id="mainVideo" autoplay playsinline></video>
+
+          <div id="thumbs-bar">
+            <div id="localThumb" class="thumb-box" title="Clique para ver sua tela grande">
+              <!-- localVideo DEVE ter muted para não gerar eco da sua própria voz/jogo -->
+              <video id="localVideo" autoplay playsinline muted></video>
+              <span>Sua Tela</span>
+            </div>
+            <div id="remoteThumb" class="thumb-box" title="Clique para ver a tela do colega grande">
+              <video id="remoteVideo" autoplay playsinline muted></video>
+              <span>Colega</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="sidebar">
+          <h4 style="margin: 0; color: #b9bbbe;">Espectadores (<span id="viewerCount">0</span>)</h4>
+          <ul id="viewers-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
