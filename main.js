@@ -35,12 +35,12 @@ let focoAtual = "remote";
 const configRTC = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
 
 const presets = {
-  "320p30": { width: 640, height: 360, frameRate: 30, maxBitrate: 400000 },
+  "320p30": { width: 640, height: 360, frameRate: 30, maxBitrate: 500000 },
   "320p60": { width: 640, height: 360, frameRate: 60, maxBitrate: 700000 },
-  "720p30": { width: 1280, height: 720, frameRate: 30, maxBitrate: 1500000 },
-  "720p60": { width: 1280, height: 720, frameRate: 60, maxBitrate: 2500000 },
-  "1080p30": { width: 1920, height: 1080, frameRate: 30, maxBitrate: 3000000 },
-  "1080p60": { width: 1920, height: 1080, frameRate: 60, maxBitrate: 5000000 }
+  "720p30": { width: 1280, height: 720, frameRate: 30, maxBitrate: 3500000 },
+  "720p60": { width: 1280, height: 720, frameRate: 60, maxBitrate: 4500000 },
+  "1080p30": { width: 1920, height: 1080, frameRate: 30, maxBitrate: 5000000 },
+  "1080p60": { width: 1920, height: 1080, frameRate: 60, maxBitrate: 7000000 }
 };
 
 joinBtn.addEventListener("click", () => {
