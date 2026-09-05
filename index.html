@@ -85,7 +85,7 @@
         width: 140px;
         height: 90px;
         background: black;
-        border: 2px solid #5865F2;
+        border: 2px solid #5865F2;   
         border-radius: 6px;
         overflow: hidden;
         cursor: pointer;
@@ -150,7 +150,7 @@
             <option value="1080p60">1080p - 60 fps</option>
           </select>
         </label>
-        <button id="startBtn">📺 Começa a Compartilhar</button>
+        <button id="startBtn" onclick="startScreenShare()">📺 Começa a Compartilhar</button>
         <button id="changeBtn">🔄 Trocar Tela</button>
         <button id="stopBtn">⏹️ Parar</button>
         <span id="status" style="color: #43b581; margin-left: auto;">Pronto</span>
@@ -181,6 +181,7 @@
       </div>
     </div>
 
+    <script src="/webrtc.js"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
