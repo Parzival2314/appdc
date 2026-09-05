@@ -1,5 +1,5 @@
 // Substitua pela URL do seu servidor WebSocket hospedado no Render
-const WS_URL = 'wss://seu-servidor-no-render.onrender.com'; 
+const WS_URL = 'https://servidor-gugucord.onrender.com'; 
 const ws = new WebSocket(WS_URL);
 
 const rtcConfig = {
